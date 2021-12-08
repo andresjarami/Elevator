@@ -1,9 +1,10 @@
 import random
-import simpy
 import pygame
+import simpy
+
 from Rider 		import Rider
 from Elevator	import Elevator
-from Building	import Building
+from building	import Building
 
 """
 This is the main run file. It creates an enviorment for simpy and then attaches that to each elevator and rider. 
@@ -11,8 +12,8 @@ Then starts up pygame. The elevator has sprites which are connected to pygame
 """
 
 RANDOM_SEED		 = 42 #TODO Implement
-NUM_OF_ELEVATORS = 10 #How many elevators
-NUM_OF_RIDERS	 = 50 #How many Riders
+NUM_OF_ELEVATORS = 3 #How many elevators
+NUM_OF_RIDERS	 = 2 #How many Riders
 
 env = simpy.RealtimeEnvironment(initial_time=0, factor=0.05, strict=False)
 
