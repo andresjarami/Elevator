@@ -23,14 +23,16 @@ class Rider():
 	def run(self):
 		while True:
 			if not self.waiting:
-				if self.curr_floor != self.desired_floor or self.request_elevator:
-					if self.request_elevator:
-						yield self.env.timeout(1)
-					elif self.curr_floor != self.desired_floor and not self.request_elevator and not self.chosen_elevator:
-						yield self.env.timeout(1)
-					yield self.env.timeout(1)
-				elif self.curr_floor == self.desired_floor:
-					yield self.env.timeout(self.wait)
+
+				yield self.env.timeout(1)
+				# if self.curr_floor != self.desired_floor or self.request_elevator:
+				# 	if self.request_elevator:
+				# 		yield self.env.timeout(1)
+				# 	elif self.curr_floor != self.desired_floor and not self.request_elevator and not self.chosen_elevator:
+				# 		yield self.env.timeout(1)
+				# 	yield self.env.timeout(1)
+				if self.curr_floor == self.desired_floor:
+				# 	yield self.env.timeout(self.wait)
 					self.desired_floor = random.randint(1,10)
 			else:
 				yield self.env.timeout(1)

@@ -17,32 +17,15 @@ NUM_OF_RIDERS	 = 2 #How many Riders
 
 env = simpy.RealtimeEnvironment(initial_time=0, factor=0.9, strict=False)
 
-elevators	= []
-riders		= []
-random.seed(RANDOM_SEED)
 
-pygame.init()
+def f1():
+    while True:
+        yield (x*2 for x in range(3))
 
-size = width, height = 1000, 800
 
-screen	= pygame.display.set_mode(size)
-display = pygame.display
-image	= pygame.image
-event	= pygame.event
-# Creating Elevators
-for ele in range(NUM_OF_ELEVATORS):
-	new_ele = Elevator("E-" + str(ele), env)
-	elevators.append(new_ele)
 
-# Creating Riders
-for rid in range(NUM_OF_RIDERS):
-	rider = Rider(chr(65+rid), env)
-	riders.append(rider)
-
-matrix = Building(elevators, riders, env, screen, display, image, event)
-
-for rider in riders:
-	env.process(rider.run())
+q=(x*2 for x in range(3))
+env.process(q)
 for elevator in elevators:
 	env.process(elevator.run())
 env.process(matrix.run())
